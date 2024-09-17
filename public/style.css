@@ -4,6 +4,47 @@
 
 header,
 footer {
-  background-color: lightblue;
+  background-color: pink;
   padding: 12px;
+}
+
+body {
+  margin: 0;
+}
+
+./* Container für die Boxen */
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px; /* Abstand zwischen den Boxen */
+}
+
+/* Boxen Layout */
+.box {
+  width: 23%; /* Jede Box nimmt etwa 23% der Breite ein */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.box-image {
+  width: 100%;
+  height: auto;
+}
+
+.box-description {
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
+.box-description h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.box-description p {
+  color: #666;
+  margin-top: 10px;
 }
