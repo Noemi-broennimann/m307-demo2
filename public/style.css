@@ -4,7 +4,7 @@
 
 header,
 footer {
-  background-color: pink;
+  background-color: black;
   padding: 12px;
 }
 
@@ -12,19 +12,22 @@ body {
   margin: 0;
 }
 
-./* Container für die Boxen */
+/* Container für die Boxen */
 .container {
+  max-width: 100%;
+  margin-top: 10%;
+  padding: 10px%;
+  justify-content: center;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 20px; /* Abstand zwischen den Boxen */
+  gap: 10px; /* Abstand zwischen den Boxen */
 }
 
 /* Boxen Layout */
 .box {
-  width: 23%; /* Jede Box nimmt etwa 23% der Breite ein */
+  width: 20%; /* Jede Box nimmt etwa 23% der Breite ein */
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 8%;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -44,7 +47,84 @@ body {
   font-size: 18px;
 }
 
-.box-description p {
-  color: #666;
+nav {
+  display: flex;
+  align-items: center; /* Zentriert den Inhalt vertikal */
+  justify-content: flex-start;
+}
+
+a img {
+  max-width: 5%;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-box h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #5a0cb1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
   margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: #450898;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-link a {
+  color: #5a0cb1;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
 }

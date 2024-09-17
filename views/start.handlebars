@@ -1,49 +1,35 @@
-<div class="container">
-  <div class="box">
-    <img
-      src="https://via.placeholder.com/150"
-      alt="Beispielbild"
-      class="box-image"
-    />
-    <div class="box-description">
-      <h2>Box 1 Titel</h2>
-      <p>Beschreibung für die erste Box.</p>
-    </div>
-  </div>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Registrierung</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-  <div class="box">
-    <img
-      src="https://via.placeholder.com/150"
-      alt="Beispielbild"
-      class="box-image"
-    />
-    <div class="box-description">
-      <h2>Box 2 Titel</h2>
-      <p>Beschreibung für die zweite Box.</p>
+  <body>
+    <div class="container">
+      <div class="form-box">
+        <h2>GRAFIKFORUM</h2>
+        <form action="/register" method="post">
+          <div class="input-group">
+            <label for="username">BENUTZERNAME</label>
+            <input type="text" id="username" name="username" required />
+          </div>
+          <div class="input-group">
+            <label for="email">PASSWORT</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <div class="input-group">
+            <label for="password">PASSWORT BESTÄTIGEN</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <button type="submit" class="btn">Registrieren</button>
+        </form>
+        <p class="login-link">
+          Login?
+          <a href="/login">Hier einloggen</a>
+        </p>
+      </div>
     </div>
-  </div>
+  </body>
 
-  <div class="box">
-    <img
-      src="https://via.placeholder.com/150"
-      alt="Beispielbild"
-      class="box-image"
-    />
-    <div class="box-description">
-      <h2>Box 3 Titel</h2>
-      <p>Beschreibung für die dritte Box.</p>
-    </div>
-  </div>
-
-  <div class="box">
-    <img
-      src="https://via.placeholder.com/150"
-      alt="Beispielbild"
-      class="box-image"
-    />
-    <div class="box-description">
-      <h2>Box 4 Titel</h2>
-      <p>Beschreibung für die vierte Box.</p>
-    </div>
-  </div>
-</div>
