@@ -9,17 +9,16 @@ const app = createApp({
 });
 
 /* Startseite */
-app.get("/", async (req, res) => {
-  try {
-    const posts = await app.locals.pool.query(
-      "SELECT * FROM posts ORDER BY id DESC"
-    );
+app.get("/", async function (req, res) {
+  res.render("start", {});
+});
 
-    res.render("start", { posts: posts.rows }); // Pass posts to the template
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error loading posts");
-  }
+app.post("/create_post", upload.single("image"), async function (req, res) {
+  await app.locals.pool.query(
+    "INSERT INTO todos (text, dateiname) VALUES ($1, $2)",
+    [req.body.text, req.file.filename]
+  );
+  res.redirect("/");
 });
 
 app.get("/profil", async function (req, res) {
@@ -40,21 +39,6 @@ app.get("/favoriten", async function (req, res) {
 
 app.get("/newposts", (req, res) => {
   res.sendFile(__dirname + "/path/to/newposts.html");
-});
-
-app.post("/new-post", async (req, res) => {
-  const { titel, beschreibung } = req.body;
-
-  try {
-    await app.locals.pool.query(
-      "INSERT INTO posts (titel, beschreibung) VALUES ($1, $2)",
-      [titel, beschreibung]
-    );
-    res.status(200).send("Post successful");
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error saving post");
-  }
 });
 
 /* Wichtig! Diese Zeilen müssen immer am Schluss der Website stehen! */
