@@ -9,9 +9,17 @@ const app = createApp({
 });
 
 /* Startseite */
-app.get("/", async function (req, res) {
-  const events = await app.locals.pool.query("select * from  posts");
-  res.render("start", {});
+app.get("/", async (req, res) => {
+  try {
+    const posts = await app.locals.pool.query(
+      "SELECT * FROM posts ORDER BY id DESC"
+    );
+
+    res.render("start", { posts: posts.rows }); // Pass posts to the template
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error loading posts");
+  }
 });
 
 app.get("/profil", async function (req, res) {
@@ -34,11 +42,19 @@ app.get("/newposts", (req, res) => {
   res.sendFile(__dirname + "/path/to/newposts.html");
 });
 
-app.post("/new-post", upload.single("file-upload"), async function (req, res) {
-  await app.locals.pool.query("INSERT INTO posts (text) VALUES ($1)", [
-    req.body.text,
-  ]);
-  res.redirect("/");
+app.post("/new-post", async (req, res) => {
+  const { titel, beschreibung } = req.body;
+
+  try {
+    await app.locals.pool.query(
+      "INSERT INTO posts (titel, beschreibung) VALUES ($1, $2)",
+      [titel, beschreibung]
+    );
+    res.status(200).send("Post successful");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error saving post");
+  }
 });
 
 /* Wichtig! Diese Zeilen müssen immer am Schluss der Website stehen! */
