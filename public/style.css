@@ -63,6 +63,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
 }
 
@@ -77,6 +78,7 @@ body {
 
 .form-box h2 {
   margin-bottom: 20px;
+  position: relative;
   text-align: center;
   color: #333;
 }
