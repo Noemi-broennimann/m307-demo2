@@ -1,132 +1,223 @@
+/* Allgemeine Stilregeln */
 * {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-header,
-footer {
-  background-color: black;
-  padding: 12px;
-}
-
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
-}
-
-/* Container für die Boxen */
-.container {
-  max-width: 100%;
-  margin-top: 10%;
-  padding: 10px%;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px; /* Abstand zwischen den Boxen */
-}
-
-/* Boxen Layout */
-.box {
-  width: 20%; /* Jede Box nimmt etwa 23% der Breite ein */
-  border: 1px solid #ccc;
-  border-radius: 8%;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.box-image {
-  width: 100%;
-  height: auto;
-}
-
-.box-description {
-  padding: 15px;
-  background-color: #f9f9f9;
-}
-
-.box-description h2 {
-  margin: 0;
-  font-size: 18px;
-}
-
-nav {
-  display: flex;
-  align-items: center; /* Zentriert den Inhalt vertikal */
-  justify-content: flex-start;
-}
-
-a img {
-  max-width: 5%;
-}
-
-body {
-  font-family: "Arial", sans-serif;
-  background-color: #f4f4f4;
+  padding: 0;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  background-color: #f4f4f4;
 }
 
+/* Header-Grundlayout */
+header {
+  background-color: #333; /* Dunkelgrau */
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  width: 100%; /* Header zieht sich über die gesamte Breite */
+  box-sizing: border-box; /* Sorgt dafür, dass padding die Gesamtbreite nicht beeinflusst */
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 15px; /* Abstand zwischen den Links */
+  font-size: 16px;
+}
+
+header nav a img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.tab-navigation {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background-color: #f4f4f4;
+}
+
+.tab.active {
+  background-color: #000;
+  color: #fff;
+}
+
+main {
+  padding: 20px;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.new-post a {
+  font-size: 2rem;
+  text-decoration: none;
+  color: #000;
+}
+
+/* Responsives Design für kleinere Bildschirme */
+@media (max-width: 768px) {
+  header {
+    padding: 15px; /* Weniger Padding auf mobilen Geräten */
+  }
+
+  header nav {
+    flex-direction: column; /* Stapelt die Links untereinander */
+    align-items: flex-start; /* Links am linken Rand ausrichten */
+  }
+
+  header nav a {
+    margin-right: 0;
+    margin-bottom: 10px; /* Abstand zwischen den Links vertikal */
+  }
+
+  header nav a img {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  header nav {
+    align-items: center; /* Zentriert die Navigation */
+  }
+
+  header nav a {
+    font-size: 14px; /* Kleinere Schriftgröße auf sehr kleinen Bildschirmen */
+  }
+}
+/* Container für die Boxen */
 .container {
+  width: 80%;
+  max-width: 800px;
+  margin-top: 10%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 gleichmäßig verteilte Spalten */
+  gap: 16px; /* Abstand zwischen den Boxen */
   background-color: #fff;
-  padding: 40px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  width: 100%;
-  max-width: 400px;
 }
 
-.form-box h2 {
-  margin-bottom: 20px;
+.container_name {
+  color: white;
+  width: 80%;
+  max-width: 800px;
+  margin-top: 10%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 gleichmäßig verteilte Spalten */
+  gap: 16px; /* Abstand zwischen den Boxen */
+  background-color: #000000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+.post-container {
+  display: flex;
+  width: 70%;
+  max-width: 900px;
+  background: #ffffff;
+  border: 3px solid black;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.image-upload {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   position: relative;
-  text-align: center;
-  color: #333;
 }
 
-.input-group {
-  margin-bottom: 15px;
-}
-
-.input-group label {
+.image-upload label {
   display: block;
-  margin-bottom: 5px;
-  color: #555;
+  width: 80%;
+  height: 80%;
+  border: 2px dashed gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  color: gray;
 }
 
-.input-group input {
+.image-upload input {
+  display: none;
+}
+
+.details {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.details input[type="text"],
+.details textarea {
   width: 100%;
+  margin-bottom: 20px;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   font-size: 16px;
+  border: 2px solid black;
+  border-radius: 5px;
 }
 
-.btn {
-  width: 100%;
+.details textarea {
+  height: 100px;
+  resize: none;
+}
+
+.details button {
   padding: 10px;
-  background-color: #5a0cb1;
-  color: #fff;
+  font-size: 16px;
+  background-color: black;
+  color: white;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
   cursor: pointer;
-  margin-top: 10px;
+  align-self: flex-start;
 }
 
-.btn:hover {
-  background-color: #450898;
-}
-
-.login-link {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.login-link a {
-  color: #5a0cb1;
-  text-decoration: none;
-}
-
-.login-link a:hover {
-  text-decoration: underline;
+.details button:hover {
+  background-color: #333;
 }
