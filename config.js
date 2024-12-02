@@ -94,10 +94,10 @@ export function createApp(dbconfig) {
       const result = await pool.query("SELECT * FROM users WHERE email = $1", [
         req.body.email,
       ]);
+
       if (result.rows.length === 0) {
         return res.redirect("/login");
       }
-
       const user = result.rows[0];
       if (bcrypt.compareSync(req.body.passwort, user.passwort)) {
         req.session.userid = user.id;

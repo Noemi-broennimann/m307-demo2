@@ -15,10 +15,10 @@ app.get("/", async function (req, res) {
 
 app.post("/create_post", upload.single("image"), async function (req, res) {
   await app.locals.pool.query(
-    "INSERT INTO todos (text, dateiname) VALUES ($1, $2)",
+    "INSERT INTO todos (text, text, dateiname) VALUES ($1, $2, $3)",
     [req.body.text, req.file.filename]
   );
-  res.redirect("/");
+  res.redirect("/profil");
 });
 
 app.get("/profil", async function (req, res) {
