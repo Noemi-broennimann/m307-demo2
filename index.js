@@ -37,6 +37,14 @@ app.get("/favoriten", async function (req, res) {
   res.render("favoriten", {});
 });
 
+app.get("/register", async function (req, res) {
+  res.render("register", {});
+});
+
+app.get("/login", async function (req, res) {
+  res.render("login", {});
+});
+
 app.get("/newposts", (req, res) => {
   res.sendFile(__dirname + "/path/to/newposts.html");
 });

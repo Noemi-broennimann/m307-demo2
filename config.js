@@ -5,8 +5,8 @@ const { Pool } = pg;
 import cookieParser from "cookie-parser";
 import multer from "multer";
 import sessions from "express-session";
-import bcrypt from "bcrypt";
 import bbz307 from "bbz307";
+import bcrypt from "bcrypt";
 import path from "path";
 
 // Configure multer for file uploads
@@ -39,7 +39,7 @@ export function createApp(dbconfig) {
 
   // Configure the PostgreSQL pool
   const pool = new Pool(dbconfig);
-  const login = new bbz307.Login("users", ["users", "passwort"], pool);
+  const login = new bbz307.Login("users", ["email", "passwort"], pool);
 
   // Configure Handlebars as the view engine
   app.engine("handlebars", engine());
@@ -96,12 +96,12 @@ export function createApp(dbconfig) {
       ]);
 
       if (result.rows.length === 0) {
-        return res.redirect("/login");
+        return res.redirect("/");
       }
       const user = result.rows[0];
       if (bcrypt.compareSync(req.body.passwort, user.passwort)) {
         req.session.userid = user.id;
-        res.redirect("/");
+        res.redirect("/start");
       } else {
         res.redirect("/login");
       }
