@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,18 +9,47 @@
 <body>
   <header>
     <nav>
-      <a href="/profil"><img src="/public/uploads/person.png" alt="Profil"></a>
+        <img src="person.png" alt="" />
       </a>
       <a href="/">Grafikforum</a>
     </nav>
   </header>
-
-  <form action="/create_post" enctype="multipart/form-data" method="post">
-    <input type="text" name="titel" placeholder="Titel">
-    <input type="text" name="beschreibung" placeholder="Beschreibung">
-    <input type="file" name="Bild">
-    <input type="submit" value="Posten">
+  <form id="new-post-form">
+    <input type="file" id="file-upload" name="file-upload" />
+    <input type="text" id="post-titel" name="post-titel" placeholder="Titel..." />
+    <textarea id="post-beschreibung" name="post-beschreibung" placeholder="Beschreibung..."></textarea>
+    <button type="button" id="post-button">Posten</button>
   </form>
-
+   
+  <script>
+    document.getElementById("post-button").addEventListener("click", async () => {
+      const titel = document.getElementById("post-titel").value;
+      const beschreibung = document.getElementById("post-beschreibung").value;
+  
+      if (!titel || !beschreibung) {
+        alert("Bitte füllen Sie alle Felder aus!");
+        return;
+      }
+  
+      // Fetch call to send the data to the server
+      const response = await fetch("/new-post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          titel,
+          beschreibung,
+        }),
+      });
+  
+      if (response.ok) {
+        window.location.href = "/"; // Redirect to the start page to view the post
+      } else {
+        alert("Fehler beim Posten");
+      }
+    });
+  </script>
+  
 </body>
 </html>
