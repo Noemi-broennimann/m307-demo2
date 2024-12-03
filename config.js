@@ -58,6 +58,25 @@ export function createApp(dbconfig) {
   app.get("/register", (req, res) => {
     res.render("register");
   });
+  // Middleware for file uploads
+  app.post("/new-post", upload.single("file-upload"), async (req, res) => {
+    const { titel, beschreibung, imagePath } = req.body;
+    const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
+    if (!titel || !beschreibung) {
+      return res.status(400).send("Title and description are require.");
+    }
+    try {
+      await pool.query(
+        "INSERT INTO posts (titel, beschreibung, bild) VALUES ($1, $2, $3)",
+        [titel, beschreibung, bild]
+      );
+      res.status(200).send("Post created successfully.");
+    } catch (error) {
+      console.error("Error saving post:", error.message);
+      res.status(500).send("Error saving post.");
+    }
+  });
+
   app.post("/register", async (req, res) => {
     try {
       const hashedPassword = bcrypt.hashSync(req.body.passwort, 10);
@@ -95,24 +114,7 @@ export function createApp(dbconfig) {
       res.status(500).send("Error logging in.");
     }
   });
-  // Middleware for file uploads
-  app.post("/new-post", upload.single("file-upload"), async (req, res) => {
-    const { titel, beschreibung } = req.body;
-    const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
-    if (!titel || !beschreibung) {
-      return res.status(400).send("Title and description are require.");
-    }
-    try {
-      await pool.query(
-        "INSERT INTO posts (titel, beschreibung, image_path) VALUES ($1, $2, $3)",
-        [titel, beschreibung, imagePath]
-      );
-      res.status(200).send("Post created successfully.");
-    } catch (error) {
-      console.error("Error saving post:", error.message);
-      res.status(500).send("Error saving post.");
-    }
-  });
+
   // Global error handler for file upload errors
   app.use((err, req, res, next) => {
     if (

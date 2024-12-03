@@ -1,4 +1,3 @@
-
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
@@ -9,20 +8,20 @@
   <body>
     <header>
       <nav>
-        <a href="/profil"><img src="/public/uploads/person.png" alt="Profil"></a>
-        </a>
+        <a href="/profil"><img
+            src="/public/uploads/person.png"
+            alt="Profil"
+          /></a>
         <a href="/">Grafikforum</a>
       </nav>
     </header>
 
-    <form action="/create_post" enctype="multipart/form-data" method="post">
-      <input type="text" name="titel">
-      <input type="text" name="beschreibung">
-      <input type="file" name="bild">
-      <input type="submit">
+    <form action="/new-post" enctype="multipart/form-data" method="post">
+      <input type="text" name="titel" />
+      <input type="text" name="beschreibung" />
+      <input type="file" name="bild" />
+      <input type="submit" />
     </form>
-  
-  </script>
-  
-</body>
+
+  </body>
 </html>
