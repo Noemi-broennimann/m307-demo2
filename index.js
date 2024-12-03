@@ -13,12 +13,31 @@ app.get("/", async function (req, res) {
   res.render("start", {});
 });
 
-app.post("/create_post", upload.single("image"), async function (req, res) {
-  await app.locals.pool.query(
-    "INSERT INTO todos (text, text, dateiname) VALUES ($1, $2, $3)",
-    [req.body.text, req.file.filename]
-  );
-  res.redirect("/profil");
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./uploads"); // Ordner für Uploads
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
+
+app.post("/new-post", upload.single("Bild"), async function (req, res) {
+  try {
+    console.log("req.body:", req.body);
+    console.log("req.file:", req.file);
+
+    await app.locals.pool.query(
+      "INSERT INTO posts (title, description, image) VALUES ($1, $2, $3)",
+      [req.body.titel, req.body.beschreibung, req.file.filename]
+    );
+    res.redirect("/");
+  } catch (err) {
+    console.error("Fehler beim Speichern:", err.message);
+    res.status(500).send("Error saving post: " + err.message);
+  }
 });
 
 app.get("/profil", async function (req, res) {
