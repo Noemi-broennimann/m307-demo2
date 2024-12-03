@@ -22,10 +22,6 @@ app.get("/profil", async function (req, res) {
   res.render("profil", {});
 });
 
-app.get("/create_post", async function (req, res) {
-  res.render("create_post", {});
-});
-
 app.get("/new-post", async function (req, res) {
   res.render("new-post", {});
 });
