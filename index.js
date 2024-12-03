@@ -22,6 +22,10 @@ app.get("/profil", async function (req, res) {
   res.render("profil", {});
 });
 
+app.get("/create_post", async function (req, res) {
+  res.render("create_post", {});
+});
+
 app.get("/new-post", async function (req, res) {
   res.render("new-post", {});
 });
@@ -45,12 +49,10 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.post("/create_post", upload.single("bild"), async function (req, res) {
+app.post("/create_post", upload.single("image"), async function (req, res) {
   await app.locals.pool.query(
-    "INSERT INTO posts (titel, beschreibung, bild) VALUES ($1, $2, $3)",
-    [req.body.titel],
-    [req.body.beschreibung],
-    [req.file.filename]
+    "INSERT INTO todos (titel, beschreibung, bild) VALUES ($1, $2, $3)",
+    [req.body.titel, req.body.beschreibung, req.file.filename]
   );
   res.redirect("/");
 });
