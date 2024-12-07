@@ -1,3 +1,4 @@
+
 import { createApp, upload } from "./config.js";
 const app = createApp({
   user: "lively_rain_5690",
@@ -52,34 +53,8 @@ app.post("/create_post", upload.single("bild"), async function (req, res) {
   );
   res.redirect("/");
 });
-
-// favoriten
-
-app.post("/like/:id", async function (req, res) {
-  if (!req.session.userid) {
-    res.redirect("/login");
-    return;
-  }
-  await app.locals.pool.query(
-    "INSERT INTO likes (posts_id, users_id) VALUES ($1, $2)",
-    [req.params.id, req.session.userid]
-  );
-  res.redirect("/");
-});
-
-app.get("/events/:id", async function (req, res) {
-  const event = await app.locals.pool.query(
-    "SELECT * FROM events WHERE id = $1",
-    [req.params.id]
-  );
-  const likes = await app.locals.pool.query(
-    "SELECT COUNT(user_id) FROM likes WHERE posts_id = $1",
-    [req.params.id]
-  );
-  res.render("details", { event: event.rows[0], likes: likes.rows[0] });
-});
-
 /* Wichtig! Diese Zeilen müssen immer am Schluss der Website stehen! */
 app.listen(3010, () => {
   console.log(`Example app listening at http://localhost:3010`);
 });
+

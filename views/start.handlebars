@@ -4,41 +4,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
     <header>
       <nav>
         <a href="/profil"><img
-            src="public/uploads/person.png"
+            src="/public/uploads/person.png"
             alt="Profil"
           /></a>
-
         <a href="/">Grafikforum</a>
       </nav>
     </header>
-
     <!-- Container-Bereich -->
-    <div class="container_start">
+    <div class="container">
       <div class="form-box">
         <h2>GRAFIKFORUM</h2>
         <p>Willkommen!</p>
       </div>
     </div>
-    <div class="container_start">
+    <div class="container">
       {{#each posts}}
         <div class="form-box">
-          <div class="bild-box">
-            <p>{{likes.count}} Likes</p>
-            <img src="/uploads/{{this.bild}}" alt="{{this.titel}}" />
-          </div>
           <h3>{{this.titel}}</h3>
+          <p>{{this.beschreibung}}</p>
         </div>
       {{/each}}
-
-      <form action="/like/{{id}}" enctype="multipart/form-data" method="POST">
-      </form>
     </div>
-
   </body>
-
 </html>

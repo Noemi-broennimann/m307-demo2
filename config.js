@@ -77,23 +77,25 @@ export function createApp(dbconfig) {
   });
   app.post("/login", async (req, res) => {
     try {
-      const result = await pool.query("SELECT * FROM users WHERE email = $1", [
-        req.body.email,
-      ]);
-      if (result.rows.length === 0) {
-        return res.redirect("/login");
-      }
-      const user = result.rows[0];
-      if (bcrypt.compareSync(req.body.passwort, user.passwort)) {
-        req.session.userid = user.id;
-        res.redirect("/");
+      // Datenbankabfrage: Benutzer anhand von Email und Passwort finden
+      const result = await app.locals.pool.query(
+        "SELECT id FROM users WHERE email = $1 AND password = $2",
+        [email, password]
+      );
+
+      if (result.rows.length > 0) {
+        const userId = result.rows[0].id;
+
+        // Benutzer-ID in die Session speichern
+        req.session.userid = userId;
+
+        console.log(`Benutzer eingeloggt mit ID: ${userId}`);
+        res.redirect("/"); // Weiterleitung nach erfolgreichem Login
       } else {
-        res.redirect("/login");
-      }
-    } catch (error) {
-      console.error("Error logging in:", error.message);
-      res.status(500).send("Error logging in.");
-    }
+        res
+          .status(401)
+          .send("Login fehlgeschlagen: Falsche Email oder Passwort.");
+      
   });
   // Global error handler for file upload errors
   app.use((err, req, res, next) => {
