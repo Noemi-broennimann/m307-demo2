@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
     cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
+
 const fileFilter = (req, file, cb) => {
   const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/heic"];
   if (allowedTypes.includes(file.mimetype)) {
@@ -23,6 +24,7 @@ const fileFilter = (req, file, cb) => {
     cb(new Error("Invalid file type. Only images are allowed."), false); // Reject the file
   }
 };
+
 const upload = multer({
   storage,
   fileFilter,
@@ -81,7 +83,7 @@ export function createApp(dbconfig) {
         req.body.email,
       ]);
       if (result.rows.length === 0) {
-        return res.redirect("/login");
+        return res.redirect("/");
       }
       const user = result.rows[0];
       if (bcrypt.compareSync(req.body.passwort, user.passwort)) {
@@ -95,24 +97,7 @@ export function createApp(dbconfig) {
       res.status(500).send("Error logging in.");
     }
   });
-  // Middleware for file uploads
-  app.post("/new-post", upload.single("file-upload"), async (req, res) => {
-    const { titel, beschreibung } = req.body;
-    const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
-    if (!titel || !beschreibung) {
-      return res.status(400).send("Title and description are require.");
-    }
-    try {
-      await pool.query(
-        "INSERT INTO posts (titel, beschreibung, image_path) VALUES ($1, $2, $3)",
-        [titel, beschreibung, imagePath]
-      );
-      res.status(200).send("Post created successfully.");
-    } catch (error) {
-      console.error("Error saving post:", error.message);
-      res.status(500).send("Error saving post.");
-    }
-  });
+
   // Global error handler for file upload errors
   app.use((err, req, res, next) => {
     if (

@@ -11,27 +11,35 @@
         <h2>GRAFIKFORUM</h2>
         <form action="/register" method="post">
           <div class="input-group">
-            <label for="users">Benutzername (Email)</label>
-            <input type="email" id="users" name="email" required />
+            <label for="users">BENUTZERNAME (E-MAIL)</label>
+            <input
+              type="email"
+              id="users"
+              name="email"
+              required
+              placeholder="E-MAIL"
+            />
           </div>
           <div class="input-group">
-            <label for="password">Passwort</label>
+            <label for="password">PASSWORT</label>
             <input
               type="password"
               id="password"
               name="passwort"
               required
               autocomplete="off"
+              placeholder="PASSWORT"
             />
           </div>
           <div class="input-group">
-            <label for="confirm-password">Passwort bestätigen</label>
+            <label for="confirm-password">PASSWORT BESTÄTIGEN</label>
             <input
               type="password"
               id="confirm-password"
               name="confirm-password"
               required
               autocomplete="off"
+              placeholder="PASSWORT BESTÄTIGEN"
             />
           </div>
           <button type="submit" class="btn">Registrieren</button>

@@ -7,7 +7,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box;v
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +17,7 @@ body {
 
 /* Header-Grundlayout */
 header {
-  background-color: #333; /* Dunkelgrau */
+  background-color: black; /* Dunkelgrau */
   color: white;
   padding: 20px;
   display: flex;
@@ -40,6 +40,18 @@ header nav a {
   text-decoration: none;
   margin-right: 15px; /* Abstand zwischen den Links */
   font-size: 16px;
+}
+
+a {
+  text-align: start;
+}
+
+p {
+  text-align: start;
+}
+
+h2 {
+  text-align: start;
 }
 
 header nav a img {
@@ -125,8 +137,7 @@ main {
 }
 /* Container für die Boxen */
 .container {
-  width: 80%;
-  max-width: 800px;
+  max-width: 5000px;
   margin-top: 10%;
   padding: 20px;
   display: grid;
@@ -220,4 +231,114 @@ main {
 
 .details button:hover {
   background-color: #333;
+}
+
+img {
+  max-width: 90%;
+}
+
+/* Input fields */
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  color: white;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid white;
+  border-radius: 3px;
+  background-color: white;
+  color: black;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Button */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background-color: #f2f2f2;
+}
+
+/* Login link */
+.login-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: white;
+}
+
+div.container {
+  background-color: #000;
+  color: white;
+}
+
+div.container_start {
+  background-color: white;
+  color: black;
+  width: 80%;
+  max-width: 800px;
+  margin-top: 10%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 gleichmäßig verteilte Spalten */
+  gap: 16px; /* Abstand zwischen den Boxen */
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.login-link a {
+  color: #007bff;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+div.form-box {
+  text-align: center;
+}
+
+.bild-box {
+  width: 150px; /* Breite der Box (kann angepasst werden) */
+  height: 150px; /* Höhe der Box gleich der Breite, um sie quadratisch zu machen */
+  overflow: hidden; /* Verhindert, dass das Bild über die Box hinausgeht */
+  position: relative; /* Für genauere Kontrolle des Bildes, falls nötig */
+  border-radius: 25%;
+  border-color: #000;
+}
+
+.bild-box img {
+  width: 100%; /* Bild nimmt die gesamte Breite der Box ein */
+  height: 100%; /* Bild wird in die Höhe gestreckt, um die Box auszufüllen */
+  object-fit: cover; /* Bild wird zugeschnitten, um die Box auszufüllen */
+}
+h3 {
+  text-align: start;
 }
