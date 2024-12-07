@@ -10,7 +10,7 @@ const app = createApp({
 app.get("/", async (req, res) => {
   try {
     const posts = await app.locals.pool.query(
-      "SELECT  posts.id, posts.titel, posts.bild from posts "
+      "SELECT * FROM posts ORDER BY id DESC"
     );
     res.render("start", { posts: posts.rows }); // Pass posts to the template
   } catch (error) {
@@ -21,11 +21,9 @@ app.get("/", async (req, res) => {
 app.get("/profil", async function (req, res) {
   res.render("profil", {});
 });
-
 app.get("/create_post", async function (req, res) {
   res.render("create_post", {});
 });
-
 app.get("/new-post", async function (req, res) {
   res.render("new-post", {});
 });
@@ -35,7 +33,6 @@ app.get("/impressum", async function (req, res) {
 app.get("/favoriten", async function (req, res) {
   res.render("favoriten", {});
 });
-
 app.get("/", async (req, res) => {
   try {
     // Beispielhafte Datenbankabfrage (Passe dies je nach Datenbank an)
@@ -48,7 +45,6 @@ app.get("/", async (req, res) => {
     res.status(500).send("Fehler beim Abrufen der Daten");
   }
 });
-
 app.post("/create_post", upload.single("bild"), async function (req, res) {
   await app.locals.pool.query(
     "INSERT INTO posts (titel, beschreibung, bild) VALUES ($1, $2, $3)",
@@ -57,7 +53,7 @@ app.post("/create_post", upload.single("bild"), async function (req, res) {
   res.redirect("/");
 });
 
-//likes
+// favoriten
 
 app.post("/like/:id", async function (req, res) {
   if (!req.session.userid) {
@@ -71,15 +67,13 @@ app.post("/like/:id", async function (req, res) {
   res.redirect("/");
 });
 
-res.redirect(`/posts/${req.params.id}`);
-
 app.get("/events/:id", async function (req, res) {
   const event = await app.locals.pool.query(
     "SELECT * FROM events WHERE id = $1",
     [req.params.id]
   );
   const likes = await app.locals.pool.query(
-    "SELECT COUNT(user_id) FROM likes WHERE post_id = $1",
+    "SELECT COUNT(user_id) FROM likes WHERE posts_id = $1",
     [req.params.id]
   );
   res.render("details", { event: event.rows[0], likes: likes.rows[0] });

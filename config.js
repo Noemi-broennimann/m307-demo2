@@ -15,7 +15,6 @@ const storage = multer.diskStorage({
     cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
-
 const fileFilter = (req, file, cb) => {
   const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/heic"];
   if (allowedTypes.includes(file.mimetype)) {
@@ -24,7 +23,6 @@ const fileFilter = (req, file, cb) => {
     cb(new Error("Invalid file type. Only images are allowed."), false); // Reject the file
   }
 };
-
 const upload = multer({
   storage,
   fileFilter,
@@ -83,7 +81,7 @@ export function createApp(dbconfig) {
         req.body.email,
       ]);
       if (result.rows.length === 0) {
-        return res.redirect("/");
+        return res.redirect("/login");
       }
       const user = result.rows[0];
       if (bcrypt.compareSync(req.body.passwort, user.passwort)) {
@@ -97,7 +95,6 @@ export function createApp(dbconfig) {
       res.status(500).send("Error logging in.");
     }
   });
-
   // Global error handler for file upload errors
   app.use((err, req, res, next) => {
     if (
