@@ -2,7 +2,6 @@
 * {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -12,7 +11,6 @@ body {
   flex-direction: column;
   background-color: #f4f4f4;
 }
-
 /* Header-Grundlayout */
 header {
   background-color: black; /* Dunkelgrau */
@@ -26,67 +24,55 @@ header {
   width: 100%; /* Header zieht sich über die gesamte Breite */
   box-sizing: border-box; /* Sorgt dafür, dass padding die Gesamtbreite nicht beeinflusst */
 }
-
 header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 header nav a {
   color: white;
   text-decoration: none;
   margin-right: 15px; /* Abstand zwischen den Links */
   font-size: 16px;
 }
-
 a {
   text-align: start;
 }
-
 p {
   text-align: start;
 }
-
 h2 {
   text-align: center;
 }
-
 header nav a img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 }
-
 .tab-navigation {
   display: flex;
   justify-content: space-around;
   margin: 20px 0;
 }
-
 .tab {
   padding: 10px 20px;
   cursor: pointer;
   border: none;
   background-color: #f4f4f4;
 }
-
 .tab.active {
   background-color: #000;
   color: #fff;
 }
-
 main {
   padding: 20px;
 }
-
 .post-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 15px;
 }
-
 .post-card {
   display: flex;
   flex-direction: column;
@@ -95,56 +81,40 @@ main {
   padding: 10px;
   text-align: center;
 }
-
 .new-post a {
   font-size: 2rem;
   text-decoration: none;
   color: #000;
 }
-
 /* Responsives Design für kleinere Bildschirme */
-
-@media (max-width: 1024px) {
-  .container {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
-}
-
 @media (max-width: 768px) {
   header {
-    flex-direction: column;
-    text-align: center;
+    padding: 15px; /* Weniger Padding auf mobilen Geräten */
   }
-
   header nav {
     flex-direction: column; /* Stapelt die Links untereinander */
     align-items: flex-start; /* Links am linken Rand ausrichten */
-    gap: 10px;
-    margin-top: 10px;
   }
-
   header nav a {
     margin-right: 0;
     margin-bottom: 10px; /* Abstand zwischen den Links vertikal */
   }
-
   header nav a img {
     width: 35px;
     height: 35px;
   }
 }
-
 @media (max-width: 480px) {
   header nav {
     align-items: center; /* Zentriert die Navigation */
   }
-
   header nav a {
     font-size: 14px; /* Kleinere Schriftgröße auf sehr kleinen Bildschirmen */
   }
 }
 /* Container für die Boxen */
 .container {
+  max-width: 3000px;
   margin-top: 10%;
   padding: 20px;
   display: grid;
@@ -154,9 +124,10 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
-
 .container_name {
   color: white;
+  width: 80%;
+  max-width: 800px;
   margin-top: 10%;
   padding: 20px;
   display: grid;
@@ -168,23 +139,19 @@ main {
 }
 .post-container {
   display: flex;
-  flex-direction: column;
   width: 70%;
   max-width: 900px;
   background: #ffffff;
   border: 3px solid black;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-
 .image-upload {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-
   position: relative;
 }
-
 .image-upload label {
   display: block;
   width: 80%;
@@ -197,18 +164,15 @@ main {
   text-align: center;
   color: gray;
 }
-
 .image-upload input {
   display: none;
 }
-
 .details {
   flex: 1;
   padding: 20px;
   display: flex;
   flex-direction: column;
 }
-
 .details input[type="text"],
 .details textarea {
   width: 100%;
@@ -218,12 +182,10 @@ main {
   border: 2px solid black;
   border-radius: 5px;
 }
-
 .details textarea {
   height: 100px;
   resize: none;
 }
-
 .details button {
   padding: 10px;
   font-size: 16px;
@@ -234,28 +196,23 @@ main {
   cursor: pointer;
   align-self: flex-start;
 }
-
 .details button:hover {
   background-color: #333;
 }
-
 img {
   max-width: 90%;
 }
-
 /* Input fields */
 .input-group {
   margin-bottom: 20px;
   text-align: left;
 }
-
 .input-group label {
   display: block;
   color: white;
   font-size: 14px;
   margin-bottom: 5px;
 }
-
 .input-group input {
   width: 100%;
   padding: 10px;
@@ -265,12 +222,10 @@ img {
   background-color: white;
   color: black;
 }
-
 .input-group input:focus {
   outline: none;
   border-color: #007bff;
 }
-
 /* Button */
 .btn {
   display: block;
@@ -285,23 +240,20 @@ img {
   cursor: pointer;
   text-transform: uppercase;
 }
-
 .btn:hover {
   background-color: #f2f2f2;
 }
-
 /* Login link */
 .login-link {
   margin-top: 20px;
   font-size: 14px;
   color: white;
 }
-
 div.container {
   background-color: #000;
   color: white;
+  max-width: 80%;
 }
-
 div.container_start {
   background-color: white;
   color: black;
@@ -312,21 +264,17 @@ div.container_start {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
-
 .login-link a {
   color: #007bff;
   text-decoration: underline;
   text-align: center;
 }
-
 .login-link a:hover {
   text-decoration: underline;
 }
-
 div.form-box {
   text-align: center;
 }
-
 .bild-box {
   width: 150px; /* Breite der Box (kann angepasst werden) */
   height: 150px; /* Höhe der Box gleich der Breite, um sie quadratisch zu machen */
@@ -335,7 +283,6 @@ div.form-box {
   border-radius: 25%;
   border-color: #000;
 }
-
 .bild-box img {
   width: 100%; /* Bild nimmt die gesamte Breite der Box ein */
   height: 100%; /* Bild wird in die Höhe gestreckt, um die Box auszufüllen */
@@ -344,7 +291,6 @@ div.form-box {
 h3 {
   text-align: center;
 }
-
 div.container_name {
   max-width: 80%;
 }
