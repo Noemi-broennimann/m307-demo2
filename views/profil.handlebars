@@ -1,10 +1,10 @@
+
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
     <header>
       <nav>
@@ -13,7 +13,6 @@
         <a href="/">Grafikforum</a>
       </nav>
     </header>
-
     <!-- Container-Bereich -->
     <div class="container">
       <div class="form-box">
@@ -26,12 +25,26 @@
             <a href="/favoriten">FAVORITEN</a>
         </div>
       </div>
-
       <div class="container">
       <div class="form-box">
         <a href="/new-post">+ Neuer Beitrag</a>
       </div>
-
+      <div class="myposts">
+        {{#if posts.length}}
+          <ul>
+            {{#each posts}}
+              <li>
+               
+               
+                <img src="/public/uploads/{{bild}}" alt="Post image" />
+                <h2>{{titel}}</h2>
+                
+              </li>
+            {{/each}}
+          </ul>
+        {{else}}
+          <p>Du hast noch keine Beiträge. Erstelle deinen ersten Post!</p>
+        {{/if}}
       </div>
  
   </body>

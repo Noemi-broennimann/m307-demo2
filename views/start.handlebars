@@ -17,7 +17,7 @@
       <nav>
 
         <a href="/profil"><img
-            src="/public/uploads/person.png"
+            src="public/uploads/person.png"
             alt="Profil"
           /></a>
 
@@ -46,10 +46,20 @@
       {{#each posts}}
 
         <div class="form-box">
+          <img class="bild-box" src="uploads/{{this.bild}}" />
 
           <h3>{{this.titel}}</h3>
 
           <p>{{this.beschreibung}}</p>
+
+          <form
+            action="/like/{{id}}"
+            enctype="multipart/form-data"
+            method="POST"
+          >
+            <input type="submit" value="liken" />
+            <input type="image" src="/public/uploads/heart_992672.png" />
+          </form>
 
         </div>
 

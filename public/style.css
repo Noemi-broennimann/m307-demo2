@@ -10,7 +10,7 @@ body {
   box-sizing: border-box;v
   display: flex;
   justify-content: center;
-  align-items: center;
+  
   flex-direction: column;
   background-color: #f4f4f4;
 }
@@ -51,7 +51,7 @@ p {
 }
 
 h2 {
-  text-align: start;
+  text-align: center;
 }
 
 header nav a img {
@@ -137,7 +137,7 @@ main {
 }
 /* Container für die Boxen */
 .container {
-  max-width: 5000px;
+  max-width: 3000px;
   margin-top: 10%;
   padding: 20px;
   display: grid;
@@ -145,7 +145,7 @@ main {
   gap: 16px; /* Abstand zwischen den Boxen */
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .container_name {
@@ -294,18 +294,16 @@ img {
 div.container {
   background-color: #000;
   color: white;
+  max-width: 80%;
+
 }
 
 div.container_start {
   background-color: white;
   color: black;
-  width: 80%;
-  max-width: 800px;
-  margin-top: 10%;
-  padding: 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4 gleichmäßig verteilte Spalten */
-  gap: 16px; /* Abstand zwischen den Boxen */
+  gap: 8px; /* Abstand zwischen den Boxen */
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -340,5 +338,9 @@ div.form-box {
   object-fit: cover; /* Bild wird zugeschnitten, um die Box auszufüllen */
 }
 h3 {
-  text-align: start;
+  text-align: center;
+}
+
+div.container_name {
+  max-width: 80%;
 }
