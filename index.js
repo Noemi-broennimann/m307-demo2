@@ -57,6 +57,18 @@ app.post("/like/:id", async function (req, res) {
   res.redirect("/");
 });
 
+app.get("/events/:id", async function (req, res) {
+  const event = await app.locals.pool.query(
+    "SELECT * FROM events WHERE id = $1",
+    [req.params.id]
+  );
+  const likes = await app.locals.pool.query(
+    "SELECT COUNT(user_id) FROM favoriten WHERE posts_id = $1",
+    [req.params.id]
+  );
+  res.render("details", { event: event.rows[0], likes: likes.rows[0] });
+});
+
 /* Wichtig! Diese Zeilen müssen immer am Schluss der Website stehen! */
 app.listen(3010, () => {
   console.log(`Example app listening at http://localhost:3010`);

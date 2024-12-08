@@ -126,8 +126,7 @@ main {
 }
 .container_name {
   color: white;
-  width: 80%;
-  max-width: 800px;
+  width: 100%;
   margin-top: 10%;
   padding: 20px;
   display: grid;
@@ -252,7 +251,7 @@ img {
 div.container {
   background-color: #000;
   color: white;
-  max-width: 80%;
+  max-width: 100%;
 }
 div.container_start {
   background-color: white;
@@ -292,5 +291,5 @@ h3 {
   text-align: center;
 }
 div.container_name {
-  max-width: 80%;
+  max-width: 100%;
 }
