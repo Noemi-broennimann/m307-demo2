@@ -7,10 +7,8 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;v
-  display: flex;
+  box-sizing: border-box;
   justify-content: center;
-  
   flex-direction: column;
   background-color: #f4f4f4;
 }
@@ -105,14 +103,24 @@ main {
 }
 
 /* Responsives Design für kleinere Bildschirme */
+
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
   header {
-    padding: 15px; /* Weniger Padding auf mobilen Geräten */
+    flex-direction: column;
+    text-align: center;
   }
 
   header nav {
     flex-direction: column; /* Stapelt die Links untereinander */
     align-items: flex-start; /* Links am linken Rand ausrichten */
+    gap: 10px;
+    margin-top: 10px;
   }
 
   header nav a {
@@ -137,7 +145,6 @@ main {
 }
 /* Container für die Boxen */
 .container {
-  max-width: 3000px;
   margin-top: 10%;
   padding: 20px;
   display: grid;
@@ -150,8 +157,6 @@ main {
 
 .container_name {
   color: white;
-  width: 80%;
-  max-width: 800px;
   margin-top: 10%;
   padding: 20px;
   display: grid;
@@ -163,6 +168,7 @@ main {
 }
 .post-container {
   display: flex;
+  flex-direction: column;
   width: 70%;
   max-width: 900px;
   background: #ffffff;
@@ -294,8 +300,6 @@ img {
 div.container {
   background-color: #000;
   color: white;
-  max-width: 80%;
-
 }
 
 div.container_start {
