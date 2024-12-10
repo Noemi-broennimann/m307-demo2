@@ -18,10 +18,22 @@ app.get("/", async (req, res) => {
     res.status(500).send("Error loading posts");
   }
 });
+app.get("/post-ansicht", async function (req, res) {
+  try {
+    const posts = await app.locals.pool.query(
+      "SELECT  posts.id, posts.titel, posts.beschreibung, posts.bild from posts "
+    );
+    res.render("post-ansicht", { posts: posts.rows }); // Pass posts to the template
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error loading posts");
+  }
+});
 
 app.get("/create_post", async function (req, res) {
   res.render("create_post", {});
 });
+
 app.get("/new-post", async function (req, res) {
   res.render("new-post", {});
 });
@@ -33,13 +45,30 @@ app.get("/favoriten", async function (req, res) {
 });
 
 app.get("/profil", async function (req, res) {
-  res.render("profil", {});
+  res.render("profil", { email: req.session.email });
+  const posts = await app.locals.pool.query(
+    "SELECT * FROM posts WHERE user_id = $1",
+    [req.session.userid]
+  );
 });
+
+function isLoggedIn(req, res, next) {
+  if (req.session.userid) {
+    // Benutzer ist eingeloggt, weiter zur Profilseite
+    return next();
+  } // Benutzer ist nicht eingeloggt, weiterleiten zur Login-Seite
+  else res.redirect("/login");
+}
 
 app.post("/create_post", upload.single("bild"), async function (req, res) {
   await app.locals.pool.query(
-    "INSERT INTO posts (titel, beschreibung, bild) VALUES ($1, $2, $3)",
-    [req.body.titel, req.body.beschreibung, req.file.filename]
+    "INSERT INTO posts (user_id, titel, beschreibung, bild) VALUES ($1, $2, $3, $4)",
+    [
+      req.session.userid,
+      req.body.titel,
+      req.body.beschreibung,
+      req.file.filename,
+    ]
   );
   res.redirect("/");
 });
@@ -57,9 +86,9 @@ app.post("/like/:id", async function (req, res) {
   res.redirect("/");
 });
 
-app.get("/events/:id", async function (req, res) {
-  const event = await app.locals.pool.query(
-    "SELECT * FROM events WHERE id = $1",
+app.get("/posts/:id", async function (req, res) {
+  const post = await app.locals.pool.query(
+    "SELECT * FROM posts WHERE id = $1",
     [req.params.id]
   );
   const likes = await app.locals.pool.query(

@@ -293,3 +293,9 @@ h3 {
 div.container_name {
   max-width: 100%;
 }
+
+h3 {
+  list-style: none;
+  text-decoration: none;
+  color: #fff;
+}

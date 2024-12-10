@@ -72,26 +72,33 @@ export function createApp(dbconfig) {
     }
   });
   // User login
+
   app.get("/login", (req, res) => {
     res.render("login");
   });
+
   app.post("/login", async (req, res) => {
     try {
       const result = await pool.query("SELECT * FROM users WHERE email = $1", [
         req.body.email,
       ]);
+
       if (result.rows.length === 0) {
         return res.redirect("/");
       }
+
       const user = result.rows[0];
+
       if (bcrypt.compareSync(req.body.passwort, user.passwort)) {
         req.session.userid = user.id;
+
         res.redirect("/");
       } else {
         res.redirect("/login");
       }
     } catch (error) {
       console.error("Error logging in:", error.message);
+
       res.status(500).send("Error logging in.");
     }
   });
@@ -103,8 +110,38 @@ export function createApp(dbconfig) {
     ) {
       return res.status(400).send(err.message);
     }
+
     next(err);
   });
+
+  app.use(
+    sessions({
+      secret: "thisismysecrctekeyfhrgfgrfrty84fwir767", // Ein sicheres Secret verwenden
+      saveUninitialized: false, // Nur benötigte Sessions speichern
+      cookie: {
+        maxAge: 1000 * 60 * 30, // Session-Lebensdauer: 30 Minuten
+        httpOnly: true, // Schützt vor XSS-Angriffen
+      },
+      resave: false, // Session nur speichern, wenn sich etwas geändert hat
+    })
+  );
+
+  app.get("/logout", (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        console.error("Fehler beim Logout:", err.message);
+        return res.status(500).send("Fehler beim Logout.");
+      }
+      res.clearCookie("connect.sid"); // Session-Cookie löschen
+      res.redirect("/login"); // Zum Login umleiten
+    });
+  });
+  function requireLogin(req, res, next) {
+    if (!req.session.userid) {
+      return res.redirect("/login"); // Zum Login umleiten, wenn nicht eingeloggt
+    }
+    next();
+  }
   return app;
 }
 export { upload };

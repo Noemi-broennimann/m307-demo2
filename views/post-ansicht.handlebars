@@ -1,0 +1,57 @@
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/profil"><img src="/public/uploads/person.png" alt="Profil"></a>
+        </a>
+        <a href="/">Grafikforum</a>
+      </nav>
+    </header>
+    <body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>GRAFIKFORUM</h1>
+        </header>
+    
+        <!-- Hauptinhalt -->
+        <div class="content">
+            <!-- Linkes Bild -->
+            <div class="image-section">
+                <img src="uploads/{{this.bild}}" alt="bild" class="design-image">
+            </div>
+    
+            <!-- Rechter Bereich -->
+            <div class="text-section">
+                <!-- Profilname -->
+                <div class="profile">
+                    <span class="profile-name">{{email}}</span>
+                </div>
+    
+                <!-- Titel -->
+                <h2>{{titel}}</h2>
+    
+                <!-- Beschreibung -->
+                <p>{{beschreibung}}</p>
+    
+                <!-- Speichern und Feedback -->
+                <div class="actions">
+                  <form
+                  action="/like/{{id}}"
+                  enctype="multipart/form-data"
+                  method="POST"
+                >
+                  <input type="submit" value="favorit" />
+                 
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

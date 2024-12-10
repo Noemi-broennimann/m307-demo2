@@ -15,15 +15,18 @@
     </header>
     <!-- Container-Bereich -->
     <div class="container">
+      {{#each users}}
       <div class="form-box">
-        <h2>NOEMI BRÖNNIMANN</h2>
+        <h2>{{email}}</h2>
       </div>
+      {{/each}}
     </div>
     <div class="container_name">
         <div class="form-box">
             <a href="/profil">MEINE POSTS</a>
             <a href="/favoriten">FAVORITEN</a>
         </div>
+     
       </div>
       <div class="container">
       <div class="form-box">
