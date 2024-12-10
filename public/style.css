@@ -128,7 +128,8 @@ main {
   color: white;
   width: 100%;
   margin-top: 10%;
-  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4 gleichmäßig verteilte Spalten */
   gap: 16px; /* Abstand zwischen den Boxen */
@@ -297,5 +298,9 @@ div.container_name {
 h3 {
   list-style: none;
   text-decoration: none;
+  color: #fff;
+}
+a {
+  text-decoration: underline;
   color: #fff;
 }

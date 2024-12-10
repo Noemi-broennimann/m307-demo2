@@ -14,16 +14,11 @@
     </header>
     <body>
     <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <h1>GRAFIKFORUM</h1>
-        </header>
-    
-        <!-- Hauptinhalt -->
+  <!-- Hauptinhalt -->
         <div class="content">
             <!-- Linkes Bild -->
             <div class="image-section">
-                <img src="uploads/{{this.bild}}" alt="bild" class="design-image">
+                <img src="public/uploads/{{bild}}" alt="bild" class="design-image">
             </div>
     
             <!-- Rechter Bereich -->
@@ -46,8 +41,17 @@
                   enctype="multipart/form-data"
                   method="POST"
                 >
+              
                   <input type="submit" value="favorit" />
                  
+                </form>
+                <!-- Speichern und Feedback -->
+                <form id="comment-form">
+                  <label for="kommentar"></label>
+                  <textarea id="kommentar" name="kommentar" required placeholder="DEIN FEEDBACK..."></textarea>
+              
+              
+                  <button type="submit">post</button>
                 </form>
                 </div>
             </div>
